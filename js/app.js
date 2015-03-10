@@ -1,4 +1,4 @@
-var db = openDatabase('scoreboard', '', '', 1024 * 1024);
+锘縱ar db = openDatabase('scoreboard', '', '', 1024 * 1024);
 db.transaction(function(tx) {
   tx.executeSql('CREATE TABLE IF NOT EXISTS histories (date DATE, score INT)');
   tx.executeSql('SELECT SUM(score) sum FROM histories', null,
@@ -18,7 +18,7 @@ db.transaction(function(tx) {
         '-' + (date.getMonth() || 12) +
         '-' + date.getDate();
       logs += '<div class="row log"><div class="col-xs-6 date">' +
-        dateStr + '</div><div class="col-xs-6 score">获得积分<strong>' +
+        dateStr + '</div><div class="col-xs-6 score">鑾峰緱绉垎<strong>' +
         v.score + '</strong></div></div>';
     }
     var container = document.querySelector('#history .container');
