@@ -471,12 +471,20 @@ footer .footer-below {
 .form-score button {
     height: 75px;
     font-size: 31px;
+    transition: background 1s;
+    /* background: whitesmoke; */
+    /* height: 0px; */
+    /* min-height: 0px; */
+    /* line-height: 0px; */
 }
 
 .score-total {
     text-align: center;
 }
 
+#history .logs {
+    padding: 0 0;
+}
 #history .log {
     font-size: 22px;
 }
