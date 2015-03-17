@@ -51,13 +51,14 @@ function renderLog(log) {
 
 submitElem.addEventListener('webkitAnimationEnd', function() {
   this.style.webkitAnimationName = '';
-  this.disabled = false;
+  this.disabled2 = false;
 });
 
 function addScore(event, form) {
   event.preventDefault();
+  if (submitElem.disabled2) return;
   submitElem.style.webkitAnimationName = 'temporary-disable';
-  submitElem.disabled = true;
+  submitElem.disabled2 = true;
   db.transaction(function(tx) {
     var date = new Date();
     tx.executeSql('INSERT INTO histories (date, score) VALUES (?, ?)',
