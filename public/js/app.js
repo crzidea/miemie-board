@@ -3,6 +3,8 @@ var scoreElem = document.querySelector('.score-total strong');
 var scoreProgressBar = document.querySelector('#scores .progress-bar');
 var selectElem = document.querySelector('.form-score select');
 var submitElem = document.querySelector('.form-score button');
+var selectSpansElem = document.querySelectorAll('.form-score .number');
+var selectSpansRowElem = document.querySelector('.form-score .number-row');
 var db = openDatabase('scoreboard', '0.0.1', '', 1024 * 1024);
 db.transaction(function(tx) {
   tx.executeSql('CREATE TABLE IF NOT EXISTS histories (date, score)');
@@ -56,7 +58,7 @@ function addScore(event, form) {
   db.transaction(function(tx) {
     var date = new Date();
     tx.executeSql('INSERT INTO histories (date, score) VALUES (?, ?)',
-                  [ date, selectElem.value],
+                  [ date, form.score.value],
                   function(tx, result) {
                     setTimeout(function () {
                       submitElem.style.background = colorEnable;
@@ -73,9 +75,18 @@ function addScore(event, form) {
 }
 
 function changeScore(event, select) {
-  var str = ('0' + select.value).slice(-3);
-  var spans = document.querySelectorAll('.form-score .number');
+  var method;
+  if (0 < select.value) {
+    method = '+';
+    selectSpansRowElem.classList.remove('number-sub');
+    submitElem.innerHTML = '添加积分';
+  } else {
+    method = '-';
+    selectSpansRowElem.classList.add('number-sub');
+    submitElem.innerHTML = '扣除积分';
+  }
+  var str = (method + select.value).slice(-3);
   for (var i = 0, l = str.length; i < l; i ++) {
-    spans[i].innerHTML = str[i];
+    selectSpansElem[i].innerHTML = str[i];
   }
 }

@@ -459,7 +459,11 @@ footer .footer-below {
 .form-score .number {
     height: 75px;
     font-size: 61px;
-     text-align: center;
+    text-align: center;
+    transition: color 1s;
+}
+.form-score .number-row.number-sub .number {
+    color: #15C1E7;
 }
 
 .form-score select {
@@ -473,9 +477,6 @@ footer .footer-below {
     font-size: 31px;
     transition: background 1s;
     /* background: whitesmoke; */
-    /* height: 0px; */
-    /* min-height: 0px; */
-    /* line-height: 0px; */
 }
 
 .score-total {
