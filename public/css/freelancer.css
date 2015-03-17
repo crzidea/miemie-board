@@ -485,6 +485,8 @@ footer .footer-below {
 
 #history .logs {
     padding: 0 0;
+    /* clear: both; */
+    float: none;
 }
 #history .log {
     font-size: 22px;

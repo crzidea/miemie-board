@@ -1,4 +1,4 @@
-var logContainer = document.querySelector('#history .container.logs');
+var logContainer = document.querySelector('#history .logs');
 var scoreElem = document.querySelector('.score-total strong');
 var scoreProgressBar = document.querySelector('#scores .progress-bar');
 var selectElem = document.querySelector('.form-score select');
