@@ -49,22 +49,20 @@ function renderLog(log) {
     Math.abs(log.score) + '</strong></div></div>';
 }
 
+submitElem.addEventListener('webkitAnimationEnd', function() {
+  this.style.webkitAnimationName = '';
+  this.disabled = false;
+});
+
 function addScore(event, form) {
   event.preventDefault();
-  var colorEnable = '#95a5a6';
-  var colorDisable = 'whitesmoke';
-  submitElem.style.background = colorDisable;
+  submitElem.style.webkitAnimationName = 'temporary-disable';
   submitElem.disabled = true;
   db.transaction(function(tx) {
     var date = new Date();
     tx.executeSql('INSERT INTO histories (date, score) VALUES (?, ?)',
                   [ date, form.score.value],
                   function(tx, result) {
-                    setTimeout(function () {
-                      submitElem.style.background = colorEnable;
-                      submitElem.disabled = false;
-                    }, 1000);
-
                     updateScore(tx);
                     logContainer.innerHTML = renderLog({
                       date: date,

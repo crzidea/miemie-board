@@ -477,6 +477,12 @@ footer .footer-below {
     font-size: 31px;
     transition: background 1s;
     /* background: whitesmoke; */
+    /* -webkit-animation: temporary-disable 2s; */
+    -webkit-animation-duration: 2s;
+}
+@-webkit-keyframes temporary-disable {
+    50%  { background: whitesmoke; }
+    100% { background: #798D8F;    }
 }
 
 .score-total {
