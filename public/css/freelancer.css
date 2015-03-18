@@ -504,3 +504,13 @@ footer .footer-below {
     text-align: right;
     /* margin-right: 10px; */
 }
+
+.check-in svg {
+    border: goldenrod 1px solid;
+    
+    /* border-color: goldenrod; */
+    /* max-width: 100%; */
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+}

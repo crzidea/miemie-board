@@ -17,6 +17,7 @@ db.transaction(function(tx) {
                     updateRow(item);
                   }
                   logContainer.innerHTML += logs;
+                  renderCheckIn(result.rows);
                 });
   function updateRow(item) {
     if (!/^\d+$/.test(item.date)) {
@@ -27,6 +28,25 @@ db.transaction(function(tx) {
   }
   updateScore(tx);
 });
+
+function renderCheckIn(rows) {
+  var counter = 0;
+  var dayCursor = (new Date(rows.item(0).date)).getDay();
+  var l = rows.length;
+  var max = l - 1;
+  for (var i = 1; i < l; i ++) {
+    var v = rows.item(i);
+    var day = (new Date(v.date)).getDay();
+    console.log(day);
+    if (i != max && day == dayCursor) {
+      counter += v.score;
+    } else {
+      console.log(dayCursor, counter);
+      counter = v.score;
+      dayCursor = day;
+    }
+  }
+}
 
 function updateScore(tx) {
   tx.executeSql('SELECT SUM(score) sum FROM histories', null,
